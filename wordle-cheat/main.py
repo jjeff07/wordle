@@ -9,11 +9,11 @@ class Wordle:
         self.words = self._load_words(dictionary)
 
     def __call__(self, *args, **kwargs):
-        start = self.start_word(self.words)
+        start = self.start_word()
         print([w for w in start])
         while True:
             self.words = self.remove_letter()
-            print(self.start_word(self.words))
+            print(self.start_word())
 
     @staticmethod
     def _load_words(dictionary):
@@ -30,7 +30,7 @@ class Wordle:
                 alpha[l] = alpha.get(l, 0) + 1
         return sorted(zip(alpha.values(), alpha.keys()), reverse=True)[:len]
 
-    def start_word(self, words):
+    def start_word(self):
         letters = self.letter_count(6)
         tmp_words = list()
         for word in self.words:
